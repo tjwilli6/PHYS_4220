@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[margin=1.5cm,bottom=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\pagestyle{fancy}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{xcolor}
+\hypersetup{colorlinks=true,urlcolor=blue,urlbordercolor=blue}
+
+\begin{document}
+\fancyhead[L]{ \includegraphics[width=2cm]{au_logo.png} }
+\fancyhead[R]{PHYS 4220: Computational Physics}
+\fancyfoot[C]{\thepage}
+\vspace*{0cm}
+\begin{center}
+	{\LARGE \textbf{Project 2}}\\
+	\vspace{0.25cm}
+	{\Large Gravity in Two Spatial Dimensions}
+	
+	{\Large Due: Friday, November 13}
+\end{center}
+
+\newcommand{\textbook}{\textit{Giordano}}
+
+\section*{Overview}
+We have spent the past several lectures of class investigating the interaction of objects under the influence of a gravitational force $\vec{F}=-\frac{Gm_1m_2}{r^2}\hat{r}$. As it turns out, the $1/r^2$ dependence of this force is deeply connected to the fact that our Universe has 3 spatial dimensions, and thus the field strength is spread over a sphere with an area of $4\pi r^2$. The same reasoning is true of the electrostatic force.
+
+What would gravity look like if we were confined to 2 spatial dimensions instead of 3? This question is the focus of this project.
+
+ In this case, the field strength is spread over a \textit{circle} with \textit{perimeter} $2\pi r$, and so the field is proportional to $1/r$ instead of $1/r^2$. Our gravitational force law is then:
+ \begin{equation}
+ 	\label{eqn_force}
+	 \vec{F}=-\frac{G_\mathrm{2D}m_1m_2}{r}\hat{r}
+ \end{equation}
+ Where $G_\mathrm{2D}$ is the 2D equivalent of its 3D cousin $G$. Since $G$ has dimensions of $[G]=L^3T^{-2}M^{-1}$, $G_\mathrm{2D}$ has dimensions of $G_\mathrm{2D}=[G]/L=L^2T^{-2}M^{-1}$ (we don't need to specify an actual value for $G_\mathrm{2D}$, as it should drop out when we normalize.)
+ 
+ Since the force law (equation \ref{eqn_force}) is conservative ($\vec{\nabla}\times\vec{F}$=0), the force can be expressed as the gradient of a potential, where 
+ \begin{equation}
+	 U=G_\mathrm{2D}m_1m_2\ln\left(\frac{r}{R_0}\right)
+ \end{equation}
+Where $R_0$ is an arbitrary constant of integration.
+
+\section*{Questions}
+\subsection*{2-bodies}
+\begin{enumerate}
+	\item What is the equilibrium orbit $r_0$ with this gravitational potential?
+	\item Is this orbit stable? If so, what is the frequency of small oscillations about $r_0$?\\
+	\textit{Hint: We did this in class for the $1/r^2$ force. Using the force equation derived from the Lagrangian, find the force at a small distance $\Delta r$ from the equilibrium orbit $r_0$, and then approximate using the lowest-order terms of the Taylor expansion. The resulting differential equation corresponds either to harmonic oscillation or exponential growth.}
+	\item In the above problem, you should have uncovered either exponential growth or periodic motion. Use the time scale of this motion (1 / angular frequency, or the term in the denominator of the exponential) as your unit for $t_0$, and use the equilibrium orbit from part 1 for $r_0$ to normalize your equations.
+	\item Write a program to numerically solve the 2-body problem. Plot the motion ($x$ vs $y$ for different sets of initial conditions (at least 3)).
+	\item For the $1/r^2$ gravitational force, the bounded orbits close on themselves ($\phi$ and $r$ have the same period). Is this true of the $1/r$ force? Plot $\phi$ vs time together with $r$ vs time for a variety of initial conditions and check whether they have the same period.
+	\item For the $1/r^2$ force, if the total energy $E\geq0$, then the motion is unbounded (the objects never return). Is this unbounded motion possible for the $1/r$ force? Explain.
+\end{enumerate}
+\subsection*{3-bodies}
+\begin{enumerate}
+	\item Write a program to numerically solve the 3-body problem. 
+	\item Plot the motion for a few (at least 3) sets of initial conditions. Try to make a fun looking plot!
+	\begin{enumerate}
+		\item[--] If you like, you can use my animation code \href{https://drive.google.com/file/d/1vWhqohf3zJKXttpdiH-j80_EDhh8MhSF/view?usp=sharing}{animate3B.py} to produce animations of the motion. This is not required, though.
+	\end{enumerate}
+	\item Use your 3-body code to construct a miniature solar system. Start with a massive central object (at least 1000 times more massive than any other object) and two planets in different circular orbits. Plot the result.
+	\item Now give both planets some extra energy (non circular orbits) and plot the results. Do this several times for increasing values of total energy.
+	\item Simulate the case of a comet which originates far from the central object and its planet (say $\sim 15$ times farther out than the planet) with some small initial velocity. Plot the motion of the system. Is it possible to give the comet enough energy for it to escape altogether?
+	\item In two dimensions, Kepler's Law states that the orbital period $\tau$ is directly proportional to the orbital radius $r$: $\tau\propto r$. Make a plot of two bodies orbiting a massive central object in \textit{resonance} (the inner body completes an integer number $n$ orbits for every one orbit the outer body completes).
+\end{enumerate}
+
+\end{document}
