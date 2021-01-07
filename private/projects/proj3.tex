@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[margin=1.5cm,bottom=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\pagestyle{fancy}
+\usepackage{hyperref}
+\usepackage[export]{adjustbox}
+\usepackage{xcolor}
+\hypersetup{colorlinks=true,urlcolor=blue,urlbordercolor=blue}
+
+\begin{document}
+\fancyhead[L]{ \includegraphics[width=2cm]{au_logo.png} }
+\fancyhead[R]{PHYS 4220: Computational Physics}
+\fancyfoot[C]{\thepage}
+\vspace*{0cm}
+\begin{center}
+	{\LARGE \textbf{Project 3}}\\
+	\vspace{0.25cm}
+	{\Large Quantum Tunneling}
+	
+	{\Large Due: Thursday, December 17}
+\end{center}
+
+\newcommand{\textbook}{\textit{Giordano}}
+
+\section*{Overview}
+In this project you will examine the behavior of a particle incident upon a potential barrier. Specifically, you will record the transmission probability as a function of potential energy of the barrier. You will start with a Gaussian moving with momentum $p=\hbar k$:
+
+\begin{equation}
+ \Psi_0(x,0)=\left(\frac{1}{\pi\sigma^2}\right)^{1/4}e^{-\frac{1}{2}\frac{\left(x-x_0\right)^2}{\sigma^2}}e^{ik(x-x_0)}
+\end{equation}
+
+The potential barrier is characterized by the so-called ``height'' $V_0$ and the width $d$. 
+
+You will simulate this scenario several times while varying $V_0$.
+
+\section*{Details}
+Use the following parameters for your program:\\
+\\
+\textbf{Grid parameters:}
+\begin{itemize}
+	\item $x$ runs from 0 to 1.5 in steps of $\Delta x=5\times 10^{-4}$
+	\item $t$ runs from 0 to $2\times10^{-3}$ in steps of $\Delta t=10^{-7}$
+\end{itemize}
+\textbf{$\Psi_0$:}
+\begin{itemize}
+	\item $x_0=0.3$
+	\item $\sigma = 0.05$
+	\item $k=350$
+\end{itemize}
+\textbf{Potential barrier}
+\begin{itemize}
+	\item $x_0=0.6$
+	\item $d=5\times10^{-3}$
+	\item $V_0$: ranging from $0$ to $2E$, where $E$ is the initial energy of the particle $E=\frac{1}{2}k^2$.
+\end{itemize}
+
+With wavenumber $k$, the particle has a momentum $p=k$ (in our units, $\hbar=m=1$) and total energy $E=p^2/2m = k^2/2$. You will run the simulation 11 times (stepping from $V_0=0$ to $V_0=2E$ in steps of $0.2E$).
+
+In addition to the 11 values of transmission probability, you should turn in a plot of the wave function at the final time step for any one of your simulations, as well as all of your code.
+\end{document}
